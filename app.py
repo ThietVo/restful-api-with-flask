@@ -43,8 +43,6 @@ class Student(db.Model):
         backref="students",
     )
 
-    def __repr__(self):
-        return f'<Student {self.firstname}>'
 
 
 class Course(db.Model):
@@ -56,6 +54,10 @@ class Course(db.Model):
                            server_default=func.now())
 
 # --------
+
+@app.route('/')
+def home():
+    return "<p>Hello, World!</p>"
 
 
 @app.route('/students/')
@@ -282,3 +284,7 @@ def deleteCourseRegisted():
     return {
         'success': 'Data deleted successfully'
     }
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
